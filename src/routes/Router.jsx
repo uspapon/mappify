@@ -6,6 +6,10 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import InstructorsHome from "../pages/InstructorsHome/InstructorsHome";
 import StudentsHome from "../pages/Dashboard/StudentsHome/StudentsHome";
+import PrivateRoute from "./PrivateRoute";
+import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
+import Users from "../pages/Dashboard/Users/Users";
+import Classes from "../pages/Dashboard/Classes/Classes";
 
 export const router = createBrowserRouter([
     {
@@ -19,18 +23,30 @@ export const router = createBrowserRouter([
         {
             path: 'register',
             element: <Register></Register>
+        },
+        {
+            path: 'userhome',
+            element: <PrivateRoute><UserDashboard></UserDashboard></PrivateRoute>
         }
 
       ]
     },
     {
-        path: "/dashboard",
+        path: "dashboard",
         element: <Dashboard></Dashboard>,
         children: [
             {
                 path: 'adminhome',
                 element: <AdminDashboard>Home</AdminDashboard>
 
+            },
+            {
+                path: 'users',
+                element: <Users></Users>
+            },
+            {
+                path: 'classes',
+                element: <Classes></Classes>
             },
             {
                 path: 'instructorshome',

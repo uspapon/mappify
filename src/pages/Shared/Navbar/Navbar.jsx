@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
+import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogout = () => {
+        logOut()
+            .then(() => { console.log("successfully logged out") })
+            .catch(error => console.log(error));
+    }
     const navBarOptions = <>
-        <li><Link to="login">Login</Link></li>
         <li><Link to="register">Register</Link></li>
+        <li><Link to="dashboard/adminhome">Dashboard</Link></li>
+
     </>
     return (
         <div className='bg-cyan-100'>
@@ -26,7 +35,19 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <a data-tooltip-id="my-tooltip" data-tooltip-content={user && user?.displayName}>
+                        {user &&
+                            <img
+                                src={user && user?.photoURL}
+                                alt="Profile"
+                                className="h-10 w-10 rounded-full mr-4"
+                            />}
+                    </a>
+                    {user ?
+                        <button onClick={handleLogout}>Logout</button>
+                        : <Link to="login">Login</Link>
+                    }
+                    <Tooltip id="my-tooltip" />
                 </div>
             </div>
 
