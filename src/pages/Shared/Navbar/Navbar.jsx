@@ -2,21 +2,30 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { Tooltip } from 'react-tooltip';
+import useRole from '../../../hooks/useRole';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [userRole] = useRole();
+    console.log(userRole);
     const handleLogout = () => {
         logOut()
             .then(() => { console.log("successfully logged out") })
             .catch(error => console.log(error));
     }
     const navBarOptions = <>
-        <li><Link to="register">Register</Link></li>
-        <li><Link to="dashboard/adminhome">Dashboard</Link></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="ourclass">Our Classes</Link></li>
+        <li><Link to="ourinstructors">Our Instructor</Link></li>
 
+        {
+            userRole === 'admin' ? <li><Link to="dashboard/adminhome">Dashboard</Link></li>
+                : userRole === 'instructor' ? <li><Link to="dashboard/instructorshome">Dashboard</Link></li>
+                    : <li><Link to="dashboard/studentshome">Dashboard</Link></li>
+        }
     </>
     return (
-        <div className='bg-cyan-100'>
+        <div className='bg-cyan-50'>
             <div className="navbar max-w-7xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -27,7 +36,7 @@ const Navbar = () => {
                             {navBarOptions}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a className="btn btn-ghost normal-case text-3xl font-bold">Mappify</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -44,8 +53,14 @@ const Navbar = () => {
                             />}
                     </a>
                     {user ?
-                        <button onClick={handleLogout}>Logout</button>
-                        : <Link to="login">Login</Link>
+                        <>
+                            <button onClick={handleLogout}>Logout</button>
+
+                        </>
+                        : <>
+                            <Link to="login">Login</Link>
+                            <span className='ms-3'><Link to="register">Register</Link></span>
+                        </>
                     }
                     <Tooltip id="my-tooltip" />
                 </div>

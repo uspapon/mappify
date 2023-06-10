@@ -33,7 +33,7 @@ const Register = () => {
                 if (newUser) {
                     updateUserProfile(data.name, data.photoURL)
                         .then(result => {
-                            const userData = {name: data.name, email: data.email}
+                            const userData = {name: data.name, email: data.email, photo:data.photoURL }
                             
                             
                             fetch("http://localhost:5000/users", {
