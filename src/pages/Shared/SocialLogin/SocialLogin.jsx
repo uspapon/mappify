@@ -16,7 +16,7 @@ const SocialLogin = () => {
                 console.log(loggedUser);
                 console.log("successful google login");
 
-                const userData = {name: loggedUser.displayName, email: loggedUser.email}
+                const userData = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, role:'student'}
 
                 fetch("http://localhost:5000/users", {
                     method: 'POST',

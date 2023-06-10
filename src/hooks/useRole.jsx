@@ -6,14 +6,16 @@ const useRole = () => {
     const { user, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure();
 
-    const {data: userRole, isLoading: isUserRoleLoading} = useQuery({
+    const { data: userRole, isLoading: isUserRoleLoading } = useQuery({
         queryKey: ['userRole', user?.email],
-        enabled: !loading && !!user?.email,
+        enabled: !loading && !!user?.email && !!localStorage.getItem('access-token'),
         queryFn: async () => {
-            console.log("check undefined email", user?.email)
-            const res = await axiosSecure.get(`/user/role/${user?.email}`)
-            console.log("response useRole",res);
-            return res.data.role;
+            if (!loading && user?.email) {
+                // console.log("check undefined email", user?.email)
+                const res = await axiosSecure.get(`/user/role/${user?.email}`)
+                console.log("response useRole", res);
+                return res.data.role;
+            }
         }
     })
 

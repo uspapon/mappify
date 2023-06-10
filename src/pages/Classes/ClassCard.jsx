@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const ClassCard = ({ singleClass }) => {
+const ClassCard = ({ singleClass, userRole, handleSelectClass }) => {
     const { id, name, image, seats, price, email, instructor } = singleClass;
-    console.log("from card", singleClass);
+    // console.log("from card", singleClass);
+    console.log("line 8",userRole);
     return (
         <div>
             <div className="card shadow-lg bg-white p-4">
@@ -18,13 +19,12 @@ const ClassCard = ({ singleClass }) => {
                 </div>
                 <div className='pb-3 flex justify-between'>
                     <span><strong>Available Seats:</strong> {seats} </span>
-                    <span><strong>Price:</strong> {price}$</span>
+                    <span><strong>Price:</strong> {price}$ {userRole}</span>
 
                 </div>
                 <div className="card-footer flex justify-between items-center">
-
-
-                    <Link to={`classdetails/${id}`}><button className="btn-sm text-white bg-yellow-500 border-none hover:bg-yellow-600">View Details</button></Link>
+                    {/* <Link to={`classdetails/${id}`}><button disabled={!userRole === 'admin' || !userRole === 'instructor'} className="btn-sm text-white bg-yellow-500 border-none hover:bg-yellow-600">View Details </button></Link> */}
+                    <button onClick={() => handleSelectClass(singleClass)} disabled={userRole ? true : false} className="btn-sm text-white bg-yellow-500 border-none hover:bg-yellow-600">Select Class </button>
                 </div>
             </div>
         </div>

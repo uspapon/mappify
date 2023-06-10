@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const InstructorCard = ({instructor}) => {
     const {id, name, email, photo } = instructor;
@@ -13,17 +14,17 @@ const InstructorCard = ({instructor}) => {
                 </LazyLoad> */}
                 <div className="card-body py-2 pb-0 px-0">
                     <h5 className="card-title">{name}</h5>
-                    <p className="card-text pb-2">exerpt</p>
+                    <p className="card-text pb-2"><strong>Email: </strong>{email}</p>
                 </div>
-                <div className='pb-3 flex justify-between'>
-                    <span><strong>Available Seats:</strong> {email} </span>
-                    <span><strong>Price:</strong> $</span>
+                {/* <div className='pb-3 flex justify-between'>
+                    <span><strong># of Classes:</strong> n/a </span>
+                    <span><strong>Class Title:</strong> n/a</span>
 
-                </div>
+                </div> */}
                 <div className="card-footer flex justify-between items-center">
 
 
-                    <Link to={`classdetails/${id}`}><button className="btn-sm text-white bg-yellow-500 border-none hover:bg-yellow-600">View Details</button></Link>
+                    <button className="btn-sm text-white bg-yellow-500 border-none hover:bg-yellow-600">See Classes</button>
                 </div>
             </div>
         </div>

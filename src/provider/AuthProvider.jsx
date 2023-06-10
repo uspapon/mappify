@@ -9,7 +9,7 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 
-const AuthProvider = ( { children }) => {
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -21,7 +21,7 @@ const AuthProvider = ( { children }) => {
 
     const updateUserProfile = (name, photo) => {
         setLoading(true);
-        return updateProfile(auth.currentUser, { displayName: name, photoURL: photo});
+        return updateProfile(auth.currentUser, { displayName: name, photoURL: photo });
     }
 
     // user signIn
@@ -31,12 +31,12 @@ const AuthProvider = ( { children }) => {
     }
 
     const googleSignIn = () => {
-            setLoading(true);
-            return signInWithPopup(auth, googleProvider)
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider)
     }
 
     const logOut = () => {
-        setLoading(true);
+
         return signOut(auth);
     }
 
@@ -45,29 +45,31 @@ const AuthProvider = ( { children }) => {
             console.log("current user", currentUser);
             setUser(currentUser);
             // get and set token
-            if(currentUser){
-                
-                axios.post('http://localhost:5000/jwt', {email: currentUser.email})
-                .then(data => {
-                    console.log({data});
-                    console.log("token: ", data.data.token);
-                    const token = data.data.token;
-                    console.log("token",token)
-                    localStorage.setItem('access-token', token);
-                    setLoading(false)
-                })
-            }else{
+            if (currentUser) {
+
+                axios.post('http://localhost:5000/jwt', { email: currentUser.email })
+                    .then(data => {
+                        if (data.data) {
+                            // console.log({ data });
+                            // console.log("token: ", data.data.token);
+                            const token = data.data.token;
+                            // console.log("token", token)
+                            localStorage.setItem('access-token', token);
+                            setLoading(false)
+                        }
+                    })
+            } else {
                 localStorage.removeItem('access-token');
-                setLoading(false)
+
             }
 
-            setLoading(false);
+           
         })
         return () => {
             return unsubscribe();
         }
-    },[])
-    
+    }, [])
+
     const authInfo = {
         user,
         loading,
@@ -80,7 +82,7 @@ const AuthProvider = ( { children }) => {
     }
     return (
         <AuthContext.Provider value={authInfo}>
-            { children }
+            {children}
         </AuthContext.Provider>
     );
 };

@@ -1,14 +1,48 @@
 import { useQuery } from '@tanstack/react-query';
 import ClassCard from './ClassCard';
+import useRole from '../../hooks/useRole';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const OurClasses = () => {
+    const [userRole] = useRole();
+    const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
 
+    console.log('line 7', userRole);
     const { data: ourClasses = [] } = useQuery(['/ourclasses'], async () => {
         const res = await fetch(`http://localhost:5000/ourclasses`);
         return res.json();
 
 
     })
+
+    const handleSelectClass = (singleClass) => {
+        console.log(singleClass);
+        const saveClass = { 
+                            email: user?.email,
+                            classId: singleClass._id,
+                            className: singleClass.name,
+                            status: 'pending',
+                            date: new Date()
+
+                            }
+        axiosSecure.post('/select-class/', saveClass)
+        .then(data => {
+            console.log(data);
+            if(data.data.insertedId){
+                Swal.fire({
+                    title: 'Success!',
+                    text: `You have selected ${singleClass.name} class to join`,
+                    icon: 'success',
+                    confirmButtonText: 'ok'
+                })
+            }
+        })
+        
+
+    }
 
 
     return (
@@ -19,6 +53,8 @@ const OurClasses = () => {
                     ourClasses.map(singleClass => <ClassCard
                         key={singleClass._id}
                         singleClass={singleClass}
+                        userRole={userRole}
+                        handleSelectClass= {handleSelectClass}
                     ></ClassCard>)
                 }
             </div>

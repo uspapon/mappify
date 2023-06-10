@@ -46,7 +46,8 @@ const Classes = () => {
             })
 
     }
-    
+
+    // const window.my_modal_5.showModal()
     const handleFeedback = (singleClass) => {
 
     }
@@ -98,19 +99,22 @@ const Classes = () => {
                                 <th>
                                     <button onClick={() => handleApprove(singleClass)} className='btn btn-sm btn-warning mx-3'>Approve</button>
                                     <button onClick={() => handleDeny(singleClass)} className='btn btn-sm btn-error me-3'>Deny</button>
-                                    <button onClick={() => handleFeedback(singleClass)} className='btn btn-sm btn-accent me-3'>Send Feedback</button>
+
                                     {/* Open the modal using ID.showModal() method */}
-                                    <button className="btn" onClick={() => window.my_modal_5.showModal()}>open modal</button>
-                                    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                                        <form method="dialog" className="modal-box">
+                                    {/* The button to open modal */}
+                                    <label htmlFor="my_modal_6" className="btn btn-sm btn-accent me-3">send feedback</label>
+
+                                    {/* Put this part before </body> tag */}
+                                    <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+                                    <div className="modal">
+                                        <div className="modal-box">
                                             <h3 className="font-bold text-lg">Hello!</h3>
-                                            <p className="py-4">Press ESC key or click the button below to close</p>
+                                            <p className="py-4">This modal works with a hidden checkbox!</p>
                                             <div className="modal-action">
-                                                {/* if there is a button in form, it will close the modal */}
-                                                <button className="btn">Close</button>
+                                                <label htmlFor="my_modal_6" className="btn">Close!</label>
                                             </div>
-                                        </form>
-                                    </dialog>
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
 

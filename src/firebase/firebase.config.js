@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAgmS3sqjq5d-XHq_xKLbplUme8QIPQ9oM",
-  authDomain: "mappify-mind-client.firebaseapp.com",
-  projectId: "mappify-mind-client",
-  storageBucket: "mappify-mind-client.appspot.com",
-  messagingSenderId: "408789295629",
-  appId: "1:408789295629:web:c8597ab8f40d0d9085eb44"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
