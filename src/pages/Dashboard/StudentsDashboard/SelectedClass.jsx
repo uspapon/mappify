@@ -17,7 +17,7 @@ const SelectedClass = () => {
 
 
     return (
-        <div className='w-full'>
+        <div className='w-4/5'>
             <h2 className="text-3xl font-semibold text-center mt-8 mb-4">Classes I have Selected</h2>
             <div className="overflow-x-auto">
                 <table className="table">
