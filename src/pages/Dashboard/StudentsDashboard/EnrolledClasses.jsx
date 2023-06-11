@@ -28,7 +28,7 @@ const EnrolledClasses = () => {
                             <th>Class Title</th>
                             <th>Instructor</th>
                             <th>Price</th>
-                            <th>Class Joining</th>
+
                         </tr>
                     </thead>
                     <tbody>
