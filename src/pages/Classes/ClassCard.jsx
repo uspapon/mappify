@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 
 const ClassCard = ({ singleClass, userRole, token, handleSelectClass }) => {
     const { id, name, image, seats, price, email, instructor } = singleClass;
+        
     // console.log("from card", singleClass);
-    console.log("line 8",userRole);
+    // console.log("line 8",userRole);
     return (
         <div>
-            <div className="card shadow-lg bg-white p-4">
+            <div className={`card shadow-lg  p-4 ${!seats && 'bg-red-100' }`}>
 
                 <img className="card-img-top rounded" src={image} alt="Card image cap" />
                 {/* <LazyLoad height={300} onContentVisible={() => { console.log('loaded!') }}>
