@@ -33,9 +33,9 @@ const Dashboard = () => {
                         </>
                             : <>
                                 <li><Link to="adminhome"><FaHome></FaHome> Student Home</Link></li>
-                                <li><Link to="users"><FaUsers></FaUsers> My Selected Classes</Link></li>
-                                <li><Link to="classes"><FaTools></FaTools>My Enrolled Classes</Link></li>
-                                <li><Link to="classes"><FaWallet></FaWallet>Payment History</Link></li>
+                                <li><Link to="selectedclasses"><FaUsers></FaUsers> My Selected Classes</Link></li>
+                                <li><Link to="enrolledclasses"><FaTools></FaTools>My Enrolled Classes</Link></li>
+                                <li><Link to="paymenthistory"><FaWallet></FaWallet>Payment History</Link></li>
                             </>
 
 

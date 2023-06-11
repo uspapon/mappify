@@ -23,7 +23,10 @@ const OurClasses = () => {
         const saveClass = { 
                             email: user?.email,
                             classId: singleClass._id,
+                            classImage: singleClass.image,
                             className: singleClass.name,
+                            classSeats: singleClass.seats,
+                            classPrice: singleClass.price,
                             status: 'pending',
                             date: new Date()
 
