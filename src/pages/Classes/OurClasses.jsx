@@ -9,6 +9,7 @@ const OurClasses = () => {
     const [userRole] = useRole();
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
+    const token = localStorage.getItem('access-token');
 
     console.log('line 7', userRole);
     const { data: ourClasses = [] } = useQuery(['/ourclasses'], async () => {
@@ -19,7 +20,8 @@ const OurClasses = () => {
     })
 
     const handleSelectClass = (singleClass) => {
-        console.log(singleClass);
+        // console.log(singleClass);
+       
         const saveClass = { 
                             email: user?.email,
                             classId: singleClass._id,
@@ -57,6 +59,7 @@ const OurClasses = () => {
                         key={singleClass._id}
                         singleClass={singleClass}
                         userRole={userRole}
+                        token={token}
                         handleSelectClass= {handleSelectClass}
                     ></ClassCard>)
                 }
