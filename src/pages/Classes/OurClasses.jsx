@@ -25,7 +25,7 @@ const OurClasses = () => {
                             classId: singleClass._id,
                             classImage: singleClass.image,
                             className: singleClass.name,
-                            classSeats: singleClass.seats,
+                            classInstructor: singleClass.instructor,
                             classPrice: singleClass.price,
                             status: 'pending',
                             date: new Date()

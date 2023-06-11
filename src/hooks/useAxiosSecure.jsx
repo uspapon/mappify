@@ -30,7 +30,7 @@ const useAxiosSecure = () => {
         if (error.response && (error.response.status === 401 || error.response.status === 403)) {
           await logOut();
           navigate('/login');
-        console.log("Error found due to internet speed and pc performance ")
+        // console.log("Error found due to internet speed and pc performance ")
         }
         return Promise.reject(error);
       }

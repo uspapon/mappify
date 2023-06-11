@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const SelectedClass = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -28,8 +29,8 @@ const SelectedClass = () => {
                             <th>Class Image</th>
                             <th>Class Title</th>
                             <th>Instructor</th>
-                            <th>Seats</th>
                             <th>Price</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,10 +52,17 @@ const SelectedClass = () => {
 
                                     </div>
                                 </td>
-                                <td>{singleClass.classSeats}</td>
+                                <td>{singleClass.classInstructor}</td>
                                 <td>${singleClass.classPrice}</td>
                                 <th>
-                                    <button className="btn btn-warning btn-xs">pay now</button>
+                                    <Link to="/dashboard/payment" state={{classInfo: {
+                                        bookingEmail: singleClass.email,
+                                        bookingId:singleClass._id,
+                                        classId: singleClass.classId, 
+                                        className: singleClass.className, 
+                                        classPrice: singleClass.classPrice, 
+                                         
+                                        }}}><button className="btn btn-warning btn-xs">pay now</button></Link>
                                 </th>
                             </tr>
                             )

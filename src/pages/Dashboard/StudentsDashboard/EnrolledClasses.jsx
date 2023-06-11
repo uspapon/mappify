@@ -27,8 +27,8 @@ const EnrolledClasses = () => {
                             <th>Class Image</th>
                             <th>Class Title</th>
                             <th>Instructor</th>
-                            <th>Seats</th>
                             <th>Price</th>
+                            <th>Class Joining</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,7 @@ const EnrolledClasses = () => {
 
                                     </div>
                                 </td>
-                                <td>{singleClass.classSeats}</td>
+                                <td>{singleClass.classInstructor}</td>
                                 <td>${singleClass.classPrice}</td>
                                 <th>
                                     <button className="btn btn-warning btn-xs">join class</button>
