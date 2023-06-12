@@ -15,7 +15,7 @@ const OurClasses = () => {
     const location = useLocation(); 
     const navigate = useNavigate();
 
-    console.log('line 7', userRole);
+    
     const { data: ourClasses = [], refetch } = useQuery(['/ourclasses'], async () => {
         const res = await fetch(`http://localhost:5000/ourclasses`);
         return res.json();
