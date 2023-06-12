@@ -39,7 +39,7 @@ const Classes = () => {
                 if (res.data.modifiedCount > 0) {
                     refetch();
                     Swal.fire(
-                        'Approved!',
+                        'Denied!',
                         'Class has been denied.',
                         'success'
                     )

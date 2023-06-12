@@ -21,7 +21,8 @@ const Navbar = () => {
         {
             userRole === 'admin' ? <li><Link to="dashboard/adminhome">Dashboard</Link></li>
                 : userRole === 'instructor' ? <li><Link to="dashboard/instructorshome">Dashboard</Link></li>
-                    : <li><Link to="dashboard/studentshome">Dashboard</Link></li>
+                    : userRole === 'student' ? <li><Link to="dashboard/studentshome">Dashboard</Link></li>
+                    : ""
         }
     </>
     return (

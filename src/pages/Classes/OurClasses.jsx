@@ -16,7 +16,7 @@ const OurClasses = () => {
     const navigate = useNavigate();
 
     console.log('line 7', userRole);
-    const { data: ourClasses = [] } = useQuery(['/ourclasses'], async () => {
+    const { data: ourClasses = [], refetch } = useQuery(['/ourclasses'], async () => {
         const res = await fetch(`http://localhost:5000/ourclasses`);
         return res.json();
 
@@ -41,6 +41,7 @@ const OurClasses = () => {
         .then(data => {
             console.log(data);
             if(data.data.insertedId){
+                // refetch();
                 Swal.fire({
                     title: 'Success!',
                     text: `You have selected ${singleClass.name} class to join`,

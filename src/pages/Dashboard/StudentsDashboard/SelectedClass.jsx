@@ -3,18 +3,39 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import { FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const SelectedClass = () => {
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
 
-    const { data: selectedClasses = [] } = useQuery({
+    const { data: selectedClasses = [], refetch } = useQuery({
         queryKey: ['/bookings', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/bookings/${user?.email}`)
             return res.data;
         }
     })
+
+    const handleDelete = (id) => {
+        axiosSecure.delete(`/bookings/${id}`)
+            .then(res => {
+                console.log("denied data", res.data);
+                if (res.data.deletedCount > 0) {
+                    refetch();
+                    Swal.fire(
+                        'Deleted!',
+                        'Class has been deleted successfully.',
+                        'success'
+                    )
+                }
+            })
+
+
+       
+
+    }
 
 
     return (
@@ -55,14 +76,17 @@ const SelectedClass = () => {
                                 <td>{singleClass.classInstructor}</td>
                                 <td>${singleClass.classPrice}</td>
                                 <th>
-                                    <Link to="/dashboard/payment" state={{classInfo: {
-                                        bookingEmail: singleClass.email,
-                                        bookingId:singleClass._id,
-                                        classId: singleClass.classId, 
-                                        className: singleClass.className, 
-                                        classPrice: singleClass.classPrice, 
-                                         
-                                        }}}><button className="btn btn-warning btn-xs">pay now</button></Link>
+                                    <Link to="/dashboard/payment" state={{
+                                        classInfo: {
+                                            bookingEmail: singleClass.email,
+                                            bookingId: singleClass._id,
+                                            classId: singleClass.classId,
+                                            className: singleClass.className,
+                                            classPrice: singleClass.classPrice,
+
+                                        }
+                                    }}><button className="btn btn-warning btn-xs">pay now</button></Link>
+                                    <button onClick={() => handleDelete(singleClass._id)} className="btn btn-sm btn-ghost text-white bg-red-600 mx-4"><FaTrashAlt></FaTrashAlt></button>
                                 </th>
                             </tr>
                             )
