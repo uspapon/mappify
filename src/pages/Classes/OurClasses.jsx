@@ -17,7 +17,7 @@ const OurClasses = () => {
 
     
     const { data: ourClasses = [], refetch } = useQuery(['/ourclasses'], async () => {
-        const res = await fetch(`http://localhost:5000/ourclasses`);
+        const res = await fetch(`https://mappify-mind-server.vercel.app/ourclasses`);
         return res.json();
 
 

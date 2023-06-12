@@ -19,7 +19,7 @@ const SocialLogin = () => {
 
                 const userData = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, role:'student'}
 
-                fetch("http://localhost:5000/users", {
+                fetch("https://mappify-mind-server.vercel.app/users", {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"

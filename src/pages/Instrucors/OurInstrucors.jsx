@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const OurInstrucors = () => {
     const { data: ourInstructors = [] } = useQuery(['/ourinstructors'], async () => {
-        const res = await fetch(`http://localhost:5000/ourinstructors`);
+        const res = await fetch(`https://mappify-mind-server.vercel.app/ourinstructors`);
         return res.json();
 
 

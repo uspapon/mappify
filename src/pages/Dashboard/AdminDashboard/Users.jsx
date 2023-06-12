@@ -16,7 +16,7 @@ const Users = () => {
     })
 
     // const { data: users = [], refetch } = useQuery(['/users'], async () => {
-    //     const res = await fetch('http://localhost:5000/users');
+    //     const res = await fetch('https://mappify-mind-server.vercel.app/users');
     //     return res.json();
 
 
@@ -53,7 +53,7 @@ const Users = () => {
 
             }
         })
-        // fetch(`http://localhost:5000/users/${user._id}`, {
+        // fetch(`https://mappify-mind-server.vercel.app/users/${user._id}`, {
         //     method: 'DELETE'
         // })
         //     .then(res => res.json())
@@ -89,7 +89,7 @@ const Users = () => {
                 })
             }
         })
-        // fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        // fetch(`https://mappify-mind-server.vercel.app/users/admin/${user._id}`, {
         //     method: 'PATCH'
 
         // })
@@ -124,7 +124,7 @@ const Users = () => {
                 })
             }
         })
-        // fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        // fetch(`https://mappify-mind-server.vercel.app/users/instructor/${user._id}`, {
         //     method: 'PATCH'
         // })
         //     .then(res => res.json())

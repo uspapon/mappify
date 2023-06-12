@@ -36,7 +36,7 @@ const Register = () => {
                             const userData = {name: data.name, email: data.email, photo:data.photoURL, role:'student' }
                             
                             
-                            fetch("http://localhost:5000/users", {
+                            fetch("https://mappify-mind-server.vercel.app/users", {
                                 method: 'POST',
                                 headers: {
                                     "content-type": "application/json"

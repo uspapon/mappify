@@ -5,14 +5,14 @@ import Marquee from 'react-fast-marquee';
 
 const Home = () => {
     const { data: popularClasses = [] } = useQuery(['/ourclasses'], async () => {
-        const res = await fetch(`http://localhost:5000/popular-classes`);
+        const res = await fetch(`https://mappify-mind-server.vercel.app/popular-classes`);
         return res.json();
 
 
     })
 
     const { data: popularInstructors = [] } = useQuery(['/popular-instructors'], async () => {
-        const res = await fetch(`http://localhost:5000/popular-instructors`);
+        const res = await fetch(`https://mappify-mind-server.vercel.app/popular-instructors`);
         console.log("instructor", res.data)
         return res.json();
 
