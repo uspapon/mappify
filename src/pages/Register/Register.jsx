@@ -79,7 +79,7 @@ const Register = () => {
     }
     console.log(errors);
     return (
-        <div>
+        <div className='max-w-7xl mx-auto'>
             <h2 className='text-4xl font-semibold text-center mt-8 mb-4'>Please Register</h2>
             <form onSubmit={handleSubmit(onSubmit)} className='w-2/3 mx-auto'>
                 <div className="form-control">

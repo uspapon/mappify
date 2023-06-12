@@ -65,8 +65,8 @@ const OurClasses = () => {
 
 
     return (
-        <div>
-            <h2>Our Classes </h2>
+        <div  className='max-w-7xl mx-auto'>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
                 {
                     ourClasses.map(singleClass => <ClassCard
