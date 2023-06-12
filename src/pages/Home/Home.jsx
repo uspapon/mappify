@@ -96,12 +96,21 @@ const Home = () => {
                     <p className='px-6 pb-3 text-xl text-center'>Explore all the featured recipe of this month and take your cooking skill one step up. </p>
                     {/* <h2 className='px-6 pt-10 pb-3 mt-4 text-4xl text-center font-bold'>Popular Classes</h2> */}
 
-                    <Marquee className='p-6 gap-4'>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
                         {
-                            popularInstructors.map((instructor, index) => <img key={index} className="w-40 md:w-60 lg:w-80 me-10" src={instructor.instructorImage} />)
+                            popularInstructors.map((instructor, index) => <div key={index} className="card w-96 bg-base-100 shadow-xl">
+                            <figure><img src={instructor.instructorImage} alt="Shoes" /></figure>
+                            <div className="card-body">
+                              <h2 className="card-title">{instructor.instructorName}</h2>
+                              
+                              <div className="card-actions justify-end">
+                                
+                              </div>
+                            </div>
+                          </div>)
                         }
 
-                    </Marquee>
+                    </div>
                 </div>
 
                 <h1 className="ml1 text-center">
