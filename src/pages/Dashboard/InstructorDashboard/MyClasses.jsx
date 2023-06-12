@@ -37,7 +37,7 @@ const MyClasses = () => {
                             <th>{index + 1}</th>
                             <td>{singleClass.name}</td>
                             <td>{singleClass.seats}</td>
-                            <td>{singleClass.seats}</td> 
+                            <td>{singleClass.totalSeats - singleClass.seats}</td> 
                             <td>{singleClass.price}</td>
                             <td>{singleClass.status}</td>
                             <td>{singleClass?.feedback ? singleClass?.feedback : 'n/a'}</td>

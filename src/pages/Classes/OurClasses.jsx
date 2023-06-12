@@ -4,12 +4,16 @@ import useRole from '../../hooks/useRole';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 const OurClasses = () => {
     const [userRole] = useRole();
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const token = localStorage.getItem('access-token');
+    const location = useLocation(); 
+    const navigate = useNavigate();
 
     console.log('line 7', userRole);
     const { data: ourClasses = [] } = useQuery(['/ourclasses'], async () => {
@@ -49,6 +53,15 @@ const OurClasses = () => {
 
     }
 
+    const handleNotLogin = () => {
+        Swal.fire(
+            'Login Required',
+            `Please login to select this class`,
+            'Error'
+        )
+        navigate('/login');
+    }
+
 
     return (
         <div>
@@ -61,6 +74,8 @@ const OurClasses = () => {
                         userRole={userRole}
                         token={token}
                         handleSelectClass= {handleSelectClass}
+                        location={location}
+                        handleNotLogin={handleNotLogin}
                     ></ClassCard>)
                 }
             </div>

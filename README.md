@@ -1,4 +1,5 @@
-<p align="center"><a href="#" target="_self"><img src="https://i.ibb.co/S570tRd/360-F-158292937-Z6azf0-Bp9ja0n-SPn96n-XDINpw0-RNto1-J.jpg" width="400" alt="Laravel Logo"></a><span>Mappify</span></p>
+<p align="center"><a href="#" target="_self"><img src="https://i.ibb.co/S570tRd/360-F-158292937-Z6azf0-Bp9ja0n-SPn96n-XDINpw0-RNto1-J.jpg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">Mappify</h1>
 
 ## About Mappify
 * Login according to authorization

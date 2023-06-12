@@ -13,7 +13,7 @@ const useRole = () => {
             if (!loading && user?.email) {
                 // console.log("check undefined email", user?.email)
                 const res = await axiosSecure.get(`/user/role/${user?.email}`)
-                console.log("response useRole", res);
+                // console.log("response useRole", res);
                 return res.data.role;
             }
         }

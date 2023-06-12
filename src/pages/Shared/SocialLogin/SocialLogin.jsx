@@ -8,6 +8,7 @@ const SocialLogin = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
+    console.log(from);
 
     const handleGoogleSignIn = () => {
         googleSignIn()
@@ -27,11 +28,11 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
-                         navigate('/');
+                        navigate(from, {replace: true});
                         
                     })
 
-                    navigate(from, {replace: true});
+                    
                 
             })
             .catch(error => console.log(error))

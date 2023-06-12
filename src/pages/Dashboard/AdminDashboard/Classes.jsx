@@ -9,6 +9,7 @@ const Classes = () => {
     const { user } = useAuth();
     const [toggle, setToggle] = useState(false);
     const [axiosSecure] = useAxiosSecure();
+    const [feedback, setFeedback] = useState('');
     const { data: allClasses = [], refetch } = useQuery(['/allclasses'], async () => {
         const res = await axiosSecure.get(`/admin/allclasses/`);
         return res.data;
@@ -25,7 +26,7 @@ const Classes = () => {
                     refetch();
                     Swal.fire(
                         'Approved!',
-                        'Class has been deleted.',
+                        'Class has been approved.',
                         'success'
                     )
                 }
@@ -39,7 +40,7 @@ const Classes = () => {
                     refetch();
                     Swal.fire(
                         'Approved!',
-                        'Class has been deleted.',
+                        'Class has been denied.',
                         'success'
                     )
                 }
@@ -47,8 +48,22 @@ const Classes = () => {
 
     }
 
-    // const window.my_modal_5.showModal()
+
     const handleFeedback = (singleClass) => {
+        axiosSecure.patch(`/admin/class/feedback/${singleClass._id}`, {feedback})
+        .then(res => {
+            console.log("feedback message", res.data);
+            if (res.data.modifiedCount > 0) {
+                Swal.fire(
+                    'Message Sent!',
+                    `${singleClass.name} has been given feedbac`,
+                    'success'
+                )
+            }
+        })
+
+
+        console.log("feedback class id: ", singleClass)
 
     }
 
@@ -66,6 +81,7 @@ const Classes = () => {
                                     #
                                 </label>
                             </th>
+                            <th>Class Image</th>
                             <th>Class Title</th>
                             <th>Available Seats</th>
                             <th>Total Enrolled</th>
@@ -81,15 +97,13 @@ const Classes = () => {
                                     <label> {index + 1} </label>
                                 </th>
                                 <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={singleClass.image} alt="Class Image" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">{singleClass.name}</div>
-                                        </div>
+                                    <div className="mask w-24 h-24">
+                                        <img src={singleClass.image} alt="Class Image" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div className="font-bold">{singleClass.name}</div>
                                     </div>
                                 </td>
                                 <td>{singleClass.seats}</td>
@@ -102,17 +116,27 @@ const Classes = () => {
 
                                     {/* Open the modal using ID.showModal() method */}
                                     {/* The button to open modal */}
-                                    <label htmlFor="my_modal_6" className="btn btn-sm btn-accent me-3">send feedback</label>
+                                    <label  htmlFor={`my_modal_${index}`} className="btn btn-sm btn-accent me-3">send feedback</label>
 
                                     {/* Put this part before </body> tag */}
-                                    <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+                                    <input type="checkbox" id={`my_modal_${index}`} className="modal-toggle" />
                                     <div className="modal">
                                         <div className="modal-box">
-                                            <h3 className="font-bold text-lg">Hello!</h3>
-                                            <p className="py-4">This modal works with a hidden checkbox!</p>
-                                            <div className="modal-action">
-                                                <label htmlFor="my_modal_6" className="btn">Close!</label>
-                                            </div>
+                                            <h3 className="font-bold text-lg my-4">Denial Note</h3>
+                                            {/* <form onSubmit={handleFeedback}> */}
+                                                <div className="form-control">
+                                                    <label className="input-group input-group-vertical">
+                                                        <span className='p-4'>Feedback</span>
+                                                        <textarea onChange={(e) => setFeedback(e.target.value)} id='message' name='message' required className="textarea textarea-bordered h-32" placeholder="Message for denial"></textarea>               
+                                                        
+                                                    </label>
+                                                </div>
+                                                <div className="modal-action">
+                                                    <label htmlFor={`my_modal_${index}`} className="btn btn-sm btn-error">Close!</label>                                                   
+                                                    <button onClick={() => handleFeedback(singleClass)}  className="btn btn-sm btn-warning">Send</button>
+                                                </div>
+                                            {/* </form> */}
+
                                         </div>
                                     </div>
                                 </th>
