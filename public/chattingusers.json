@@ -1,0 +1,20 @@
+{
+    "users": {
+      "user_id_1": {
+        "name": "Alice",
+        "email": "alice@example.com",
+        "profile_picture": "alice_profile.jpg"
+      },
+      "user_id_2": {
+        "name": "Bob",
+        "email": "bob@example.com",
+        "profile_picture": "bob_profile.jpg"
+      },
+      "user_id_3": {
+        "name": "Charlie",
+        "email": "charlie@example.com",
+        "profile_picture": "charlie_profile.jpg"
+      }
+    }
+}
+  
